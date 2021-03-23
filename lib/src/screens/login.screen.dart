@@ -1,16 +1,19 @@
 import 'package:flutter/Material.dart';
 import 'package:flutter/services.dart';
+import 'package:login_bloc/src/blocs/provider.dart';
 import '../blocs/bloc.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final bloc = Provider.of(context);
+
     return Container(
       margin: EdgeInsets.all(20.0),
       child: Column(
         children: [
-          emailField(),
-          passwordField(),
+          emailField(bloc),
+          passwordField(bloc),
           Container(
             margin: EdgeInsets.only(top: 50.0),
           ),
@@ -20,7 +23,7 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget emailField() {
+  Widget emailField(Bloc bloc) {
     return StreamBuilder(
       stream: bloc.email,
       builder: (context, snapshot) {
@@ -36,7 +39,7 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget passwordField() {
+  Widget passwordField(Bloc bloc) {
     return StreamBuilder(
       stream: bloc.password,
       builder: (context, snapshot) {
